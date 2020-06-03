@@ -18,7 +18,7 @@ develop: venv piplocal
 
 .PHONY: test
 test:
-	coverage run -m py.test
+	coverage run -m --source='file_item' py.test
 	coverage report
 
 .PHONY: readme_check
