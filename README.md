@@ -11,7 +11,6 @@ pip install file_item
 ```
 from file_item import File
 
-
 basedir = File.basedir(__file__)
 
 file_1 = basedir.joinpath('test1.csv')
@@ -32,4 +31,6 @@ print(file_3.name)
 
 file_1.create_folder()
 
+print(File.get_file_name('test*.csv'))
+# test-.csv
 ```
