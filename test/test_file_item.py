@@ -25,3 +25,16 @@ class TestItem(unittest.TestCase):
 
     def test_str_path_none(self):
         self.assertEqual(str(self.file_no_path), './test.csv')
+
+    def test_eq(self):
+        file2 = File('test.csv', '/home/user/test.csv')
+        self.assertTrue(self.file_path == file2)
+
+    def test_no_eq(self):
+        self.assertFalse(self.file_path ==  self.file_no_path)
+
+    def test_wrong_class_eq(self):
+        self.assertFalse(self.file_path == 2)
+        
+    def test_str_eq(self):
+        self.assertTrue(self.file_path == self.file_path.path)

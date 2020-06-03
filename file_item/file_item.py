@@ -21,6 +21,11 @@ class File:
     def __str__(self):
         return self.path
 
+    def __eq__(self, other):
+        if isinstance(other, self.__class__) or isinstance(other, str):
+            return self.path == other
+        return False
+
     @staticmethod
     def basedir(file_: str) -> str:
         """
