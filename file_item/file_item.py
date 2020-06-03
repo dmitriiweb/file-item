@@ -1,3 +1,4 @@
+from typing import Optional
 from pathlib import Path
 import os
 
@@ -6,13 +7,13 @@ class File:
     """
     File object
     """
-    def __init__(self, name: str, path: str = '.') -> None:
+    def __init__(self, name: str, path: Optional[str] = None) -> None:
         """
         :param str name: file's name
-        :param str path: file's path, default: "."
+        :param str path: file's absolute path
         """
         self.name = name
-        self.path = path
+        self.path = path if path is not None else os.path.join('.', self.name)
 
     def __repr__(self):
         return f'File(name="{self.name}", path="{self.path}")'
