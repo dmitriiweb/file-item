@@ -1,5 +1,5 @@
 """
-extract_emails
+file_item
 """
 from setuptools import setup, find_packages
 
@@ -50,7 +50,7 @@ setup(
         "dev-docs": EXTRAS_DEV_DOCS,
         "timezone": ["pytz"],
     },
-    keywords='extract emails email',
+    keywords='file-item',
     classifiers=(
         'Development Status :: 5 - Production/Stable',
         'Intended Audience :: Developers',
