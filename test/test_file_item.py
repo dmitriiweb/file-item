@@ -3,42 +3,37 @@ import unittest
 
 from file_item import File
 
+TEST_PATH = '/home/user/test.csv'
+TEST_PATH2 = '/home/user/test2.csv'
+
 
 class TestItem(unittest.TestCase):
     def setUp(self) -> None:
-        self.file_path = File('test.csv', '/home/user/test.csv')
-        self.file_no_path = File('test.csv')
-        pass
+        self.file = File(TEST_PATH)
+        self.file2 = File(TEST_PATH2)
 
     def test_basedir(self):
         basedir = File.basedir(__file__)
         self.assertEqual(basedir, Path(__file__).parent)
 
     def test_repr(self):
-        self.assertEqual(repr(self.file_path), 'File(name="test.csv", path="/home/user/test.csv")')
-
-    def test_repr_path_none(self):
-        self.assertEqual(repr(self.file_no_path), 'File(name="test.csv", path="./test.csv")')
+        self.assertEqual(repr(self.file), f'File(path="{TEST_PATH}")')
 
     def test_str(self):
-        self.assertEqual(str(self.file_path), '/home/user/test.csv')
-
-    def test_str_path_none(self):
-        self.assertEqual(str(self.file_no_path), './test.csv')
+        self.assertEqual(str(self.file), TEST_PATH)
 
     def test_eq(self):
-        file2 = File('test.csv', '/home/user/test.csv')
-        self.assertTrue(self.file_path == file2)
+        file2 = File(TEST_PATH)
+        self.assertTrue(self.file == file2)
 
     def test_no_eq(self):
-        self.assertFalse(self.file_path == self.file_no_path)
+        self.assertFalse(self.file == self.file2)
 
     def test_wrong_class_eq(self):
-        self.assertFalse(self.file_path == 2)
+        self.assertFalse(self.file == 2)
 
     def test_str_eq(self):
-        self.assertTrue(self.file_path == self.file_path.path)
-
-    def test_from_path(self):
-        file_ = File.from_path('/home/user/test.csv')
-        self.assertTrue(self.file_path == file_)
+        self.assertTrue(self.file == self.file.path)
+        
+    def test_name(self):
+        self.assertEqual(self.file.name, 'test.csv')
