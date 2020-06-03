@@ -43,7 +43,7 @@ class File:
         """
         Create folder by file path if not exist
 
-        :return: None
+        :return None:
 
         Example:
             >>> f = File('/home/user/test.csv')
@@ -58,13 +58,52 @@ class File:
         Return file's basedir
 
         :param str file_: path to a file
-        :return: path to the file's folder
+        :return PosixPath: path to the file's folder
 
         Example:
             >>> from file_item import File
             >>> basedir = File.basedir(__file__)
         """
         return Path(file_).parent
+
+    @staticmethod
+    def get_file_name(name: str, ext: Optional[str] = None, replacer: str = '-') -> str:
+        """
+        Will replace forbidden characters from the string
+
+        Forbidden symbols: 
+        
+            - < (less than)
+            - > (greater than)
+            - : (colon)
+            - " (double quote)
+            - / (forward slash)
+            - \ (backslash)
+            - | (vertical bar or pipe)
+            - ? (question mark)
+            - * (asterisk)
+
+        Examples:
+            >>> File.get_file_name('test*.csv')
+            ... 'test-.csv'
+            >>> File.get_file_name('test*', ext='csv')
+            ... 'test-.csv'
+            >>> File.get_file_name('test*.csv', replacer='_')
+            ... 'test_.csv'
+
+        :param str name: file's name
+        :param str ext: file's extension, default None
+        :param str replacer: replacer for forbidden characters, default: -
+        :return str: file name
+        """
+        forbidden = ('<', '>', ':', '"', '/', '\\', '|', '?', '*')
+        if replacer in forbidden:
+            raise ValueError(f'replacer can\'t be in {forbidden}')
+        translator = {k: replacer for k in forbidden}
+        file_name = name.translate(str.maketrans(translator))
+        if ext is not None:
+            file_name = f'{file_name}.{ext}'
+        return file_name
 
     @classmethod
     def from_strings(cls, folder_path: str, file_name: str) -> 'File':
@@ -73,7 +112,7 @@ class File:
 
         :param str folder_path: path to a folder
         :param str file_name: file name
-        :return: File
+        :return File:
 
         Example:
             >>> file_ = File.from_strings('/home/user/folder', 'test.csv')

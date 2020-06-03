@@ -71,3 +71,17 @@ class TestItem(unittest.TestCase):
         fn = 'test.csv'
         f = File.from_strings(fp, fn)
         self.assertTrue(f == self.file)
+
+    def test_get_file_name_basic(self):
+        self.assertEqual(File.get_file_name('test*.csv'), 'test-.csv')
+
+    def test_get_file_name_replacer(self):
+        self.assertEqual(File.get_file_name('test*.csv', replacer='_'), 'test_.csv')
+
+    def test_get_file_name_ext(self):
+        self.assertEqual(File.get_file_name('test*', ext='csv'), 'test-.csv')
+        
+    def test_get_file_name_wrong_replacer(self):
+        with self.assertRaises(Exception) as ctx:
+            File.get_file_name('test*.csv', replacer='>')
+        self.assertTrue('replacer can\'t be in ' in str(ctx.exception))
