@@ -39,3 +39,14 @@ class File:
             >>> basedir = File.basedir(__file__)
         """
         return Path(file_).parent
+
+    @classmethod
+    def from_path(cls, file_path: str) -> 'File':
+        """
+        Create File object from file's path
+
+        :param str file_path: file's path
+        :return: File
+        """
+        file_name = Path(file_path).name
+        return cls(file_name, file_path)

@@ -31,13 +31,14 @@ class TestItem(unittest.TestCase):
         self.assertTrue(self.file_path == file2)
 
     def test_no_eq(self):
-        self.assertFalse(self.file_path ==  self.file_no_path)
+        self.assertFalse(self.file_path == self.file_no_path)
 
     def test_wrong_class_eq(self):
         self.assertFalse(self.file_path == 2)
-        
+
     def test_str_eq(self):
         self.assertTrue(self.file_path == self.file_path.path)
 
-    def test_create_folder_if_not_exist(self):
-        pass
+    def test_from_path(self):
+        file_ = File.from_path('/home/user/test.csv')
+        self.assertTrue(self.file_path == file_)
