@@ -1,4 +1,5 @@
 # file-item
+[![Documentation Status](https://readthedocs.org/projects/file-item/badge/?version=latest)](https://file-item.readthedocs.io/en/latest/?badge=latest)
 
 Documentation: https://file-item.readthedocs.io/en/latest/
 
