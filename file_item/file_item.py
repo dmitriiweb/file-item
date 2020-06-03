@@ -3,6 +3,17 @@ import os
 
 
 class File:
+    """
+    File object
+    """
+    def __init__(self, name: str, path: str = '.') -> None:
+        """
+        :param str name: file's name
+        :param str path: file's path, default: "."
+        """
+        self.name = name
+        self.path = path
+
     @staticmethod
     def basedir(file_: str) -> str:
         """

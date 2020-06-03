@@ -19,3 +19,5 @@ File
 .. autoclass:: file_item.File
     :members:
 
+    .. automethod:: __init__
+
