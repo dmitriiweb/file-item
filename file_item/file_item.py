@@ -18,6 +18,9 @@ class File:
     def __repr__(self):
         return f'File(name="{self.name}", path="{self.path}")'
 
+    def __str__(self):
+        return self.path
+
     @staticmethod
     def basedir(file_: str) -> str:
         """
