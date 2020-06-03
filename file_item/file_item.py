@@ -47,6 +47,10 @@ class File:
 
         :param str file_path: file's path
         :return: File
+
+        Example:
+            >>> from file_item import File
+            >>> file_ = File.from_path('/home/user/test.csv')
         """
         file_name = Path(file_path).name
         return cls(file_name, file_path)
