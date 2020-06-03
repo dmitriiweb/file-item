@@ -38,3 +38,6 @@ class TestItem(unittest.TestCase):
         
     def test_str_eq(self):
         self.assertTrue(self.file_path == self.file_path.path)
+
+    def test_create_folder_if_not_exist(self):
+        pass
