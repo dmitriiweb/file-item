@@ -36,11 +36,21 @@ class File:
         elif isinstance(other, PosixPath):
             return self.path == other
         elif isinstance(other, str):
-            return str(self.path) == other
+            return str(self) == other
         return False
 
-    def create_folder(self):
-        pass
+    def create_folder(self) -> None:
+        """
+        Create folder by file path if not exist
+
+        :return: None
+
+        Example:
+            >>> f = File('/home/user/test.csv')
+            >>> f.create_folder()
+        """
+        if not os.path.exists(str(self)):
+            os.makedirs(str(self))
 
     @staticmethod
     def basedir(file_: str) -> PosixPath:
