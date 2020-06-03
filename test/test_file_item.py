@@ -64,4 +64,10 @@ class TestItem(unittest.TestCase):
         file_.create_folder()
         i = [i for i in os.listdir(str(b_folder))]
         self.assertIn('test_folder', i)
-        os.rmdir(path)
+        os.rmdir(str(path))
+        
+    def test_from_strings(self):
+        fp = '/home/user/'
+        fn = 'test.csv'
+        f = File.from_strings(fp, fn)
+        self.assertTrue(f == self.file)

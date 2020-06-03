@@ -65,3 +65,17 @@ class File:
             >>> basedir = File.basedir(__file__)
         """
         return Path(file_).parent
+
+    @classmethod
+    def from_strings(cls, folder_path: str, file_name: str) -> 'File':
+        """
+        Create a File object from strings
+
+        :param str folder_path: path to a folder
+        :param str file_name: file name
+        :return: File
+
+        Example:
+            >>> file_ = File.from_strings('/home/user/folder', 'test.csv')
+        """
+        return cls(os.path.join(folder_path, file_name))
